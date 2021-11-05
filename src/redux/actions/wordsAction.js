@@ -21,10 +21,10 @@ export const fetchWords = (data) => async (dispatch) => {
 export const createWord = (data) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    window.location.reload();
-
+    console.log(data);
     dispatch({ type: CREATE, payload: data });
     dispatch({ type: END_LOADING });
+    // window.location.reload();
   } catch (error) {
     alert(error);
   }

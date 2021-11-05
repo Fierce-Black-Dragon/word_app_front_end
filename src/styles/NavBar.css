@@ -1,0 +1,49 @@
+.navBar{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #9e579d;
+    height: 3rem;
+    color: white;
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    padding: 0.5rem;
+}
+.navBar__start{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.navbar_serach input{
+    border: none;
+    border-radius: 0.5rem;
+    
+    color: black;
+    padding: 0.5rem;
+    margin: auto 0.5rem;
+    font-size: 1rem;
+    width:fit-content;
+    height: 2rem;
+    outline: none;
+    text-decoration: none;
+}
+
+.navBar_end{
+position: fixed;
+right: 1.2rem;
+top: 1rem;
+
+}
+.navBar_end button{
+    background-color: #9e579d;
+    border: none;
+    color: white;
+}
+.searchResults{
+    position: absolute;
+    top:4rem;
+    color: black;
+    background-color: whitesmoke;
+    width: 100%;  
+
+}

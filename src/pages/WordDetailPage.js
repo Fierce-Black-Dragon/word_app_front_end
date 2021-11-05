@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchWordByID } from "./../redux/actions/wordsAction";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router";
+import "../styles/WordDetail.css";
 
+import CancelIcon from "@mui/icons-material/Cancel";
 export const WordDetailPage = () => {
   const dispatch = useDispatch();
   let { id } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     axios({
-      url: " http://localhost:5000/graphql",
+      url: "https://graphql-aord-api.herokuapp.com/graphql",
       method: "post",
       data: {
         query: `
@@ -37,13 +41,37 @@ export const WordDetailPage = () => {
       });
   }, [dispatch, id]);
   const { word, isLoading } = useSelector((state) => state.wordReducer);
-  console.log(word);
+
   return (
-    <div>
-      <h1>{word.wordName}</h1>
-      <h5>{word.definition}</h5>
-      <h6>{word.Grammer}</h6>
-      <p>{word.examples}</p>
+    <div className="wordDetail">
+      <div className="wordDetail__nav">
+        <button onClick={() => navigate("/")}>
+          <CancelIcon />
+        </button>
+      </div>
+      <div className="wordDetail__main">
+        <h1 className="heading">{word.wordName}</h1>
+        <p className="g">{word.Grammer}</p>
+        <div className="wordItem">
+          <h5>Definition :</h5>
+          <p>{word.definition}</p>
+        </div>
+
+        <div className="wordItem">
+          <h5>Synonyms :</h5>
+          {word?.synonyms?.length < 0 ? (
+            <p>No synonyms</p>
+          ) : (
+            word?.synonyms?.map((synonym) => {
+              return <p>{synonym}</p>;
+            })
+          )}
+        </div>
+        <div className="wordItem">
+          <h5>Examples :</h5>
+          <p>{word.examples}</p>
+        </div>
+      </div>
     </div>
   );
 };
