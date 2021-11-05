@@ -1,19 +1,23 @@
+import React from "react";
 import "./App.css";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 
+// import { useDispatch } from "react-redux";;
+import { NavBar } from "./components/NavBar";
+import { Homepage } from "./pages/Homepage";
+import { BrowserRouter, Route, Redirect, Routes } from "react-router-dom";
+import { WordDetailPage } from "./pages/WordDetailPage";
 function App() {
   return (
-    <div className="App">
-      <AppBar position="relative" stye={{ backgroundColor: "purple" }}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Word App
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <BrowserRouter>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+        </Routes>
+        <Routes>
+          <Route path="/:id" element={<WordDetailPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
