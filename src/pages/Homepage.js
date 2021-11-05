@@ -4,7 +4,8 @@ import { NavBar } from "../components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWords, createWord } from "./../redux/actions/wordsAction";
 import axios from "axios";
-
+import { useNavigate } from "react-router";
+import { Word } from "../components/Word";
 const initialState = {
   wordName: "",
 };
@@ -43,6 +44,7 @@ export const Homepage = () => {
         console.log(err);
       });
   }, [dispatch]);
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,9 +52,6 @@ export const Homepage = () => {
       .post(
         "http://localhost:5000/graphql",
         {
-          //       wordName
-
-          //     }
           query: `mutation{
           createWord(wordInput:{wordName:"${form.wordName}"}) {
             wordName
@@ -79,6 +78,10 @@ export const Homepage = () => {
         console.log(err);
       });
   };
+  const wordDetails = (id) => {
+    console.log(id);
+    navigate(`/word/${id}`);
+  };
   const { words, isLoading } = useSelector((state) => state.wordReducer);
   return (
     <div>
@@ -87,12 +90,14 @@ export const Homepage = () => {
         <div className="worsList">
           {words?.map((word) => {
             return (
-              <div className="" key={word._id}>
-                <div className="word">
-                  <h1>{word.wordName}</h1>
-                  <h2>{word.Grammer}</h2>
-                  <h3>{word.definition}</h3>
-                </div>
+              <div
+                className=""
+                key={word._id}
+                onClick={() => {
+                  wordDetails(word._id);
+                }}
+              >
+                <Word word={word.wordName} def={word.definition} />
               </div>
             );
           })}

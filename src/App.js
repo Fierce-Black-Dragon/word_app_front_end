@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.css";
 
 // import { useDispatch } from "react-redux";;
 import { NavBar } from "./components/NavBar";
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
         </Routes>
         <Routes>
-          <Route path="/:id" element={<WordDetailPage />} />
+          <Route path="/word/:id" element={<WordDetailPage id />} />
         </Routes>
       </div>
     </BrowserRouter>

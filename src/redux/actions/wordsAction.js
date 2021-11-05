@@ -1,7 +1,7 @@
 import {
   FETCH_ALL,
   CREATE,
-  SELLERPRODUCTS,
+  BYID,
   START_LOADING,
   END_LOADING,
 } from "../../constants/ActionTypes.js";
@@ -25,7 +25,17 @@ export const createWord = (data) => async (dispatch) => {
 
     dispatch({ type: CREATE, payload: data });
     dispatch({ type: END_LOADING });
-    window.location.reload(false);
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const fetchWordByID = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+
+    dispatch({ type: BYID, payload: { word: data.data.data.word } });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     alert(error);
   }
