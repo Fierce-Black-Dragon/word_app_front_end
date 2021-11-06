@@ -13,6 +13,7 @@ export const WordDetailPage = () => {
   let { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
+    // to fetch the word by id through api cal
     axios({
       url: "https://graphql-aord-api.herokuapp.com/graphql",
       method: "post",

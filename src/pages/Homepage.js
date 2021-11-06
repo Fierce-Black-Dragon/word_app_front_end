@@ -24,6 +24,7 @@ export const Homepage = () => {
   };
   // const [added, setAdded] = useState(false);
   useEffect(() => {
+    // fetch word from api
     axios({
       url: " https://graphql-aord-api.herokuapp.com/graphql",
       method: "post",
@@ -43,6 +44,7 @@ export const Homepage = () => {
         if (result.status !== 200 && result.status !== 201) {
           throw new Error("Failed!");
         }
+        // store the result in redux
         dispatch(fetchWords(result.data.data.words));
       })
       .catch((err) => {
@@ -52,7 +54,8 @@ export const Homepage = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
+    // post new word into api
     await axios
       .post(
         "https://graphql-aord-api.herokuapp.com/graphql",
@@ -79,7 +82,9 @@ export const Homepage = () => {
         if (result.status !== 200 && result.status !== 201) {
           throw new Error("Failed!");
         }
+        // store the result in redux
         dispatch(createWord(result));
+        // to refresh the  redux store
         window.location.reload(false);
       })
       .catch((err) => {

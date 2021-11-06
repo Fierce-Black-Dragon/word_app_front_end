@@ -57,6 +57,7 @@ export const NavBar = () => {
           {search ? <CloseIcon /> : <SearchIcon />}
         </button>
       </div>
+      {/* search results */}
       <div className="searchResults">
         {query
           ? results.map((character) => (

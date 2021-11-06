@@ -6,7 +6,7 @@ import {
   END_LOADING,
 } from "../../constants/ActionTypes.js";
 import { axios } from "axios";
-
+// to store all words in redux store
 export const fetchWords = (data) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
@@ -17,7 +17,7 @@ export const fetchWords = (data) => async (dispatch) => {
     alert(error);
   }
 };
-
+// to  add created a new word in redux store
 export const createWord = (data) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
@@ -30,6 +30,7 @@ export const createWord = (data) => async (dispatch) => {
   }
 };
 
+// to get a word by id in redux store
 export const fetchWordByID = (data) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });

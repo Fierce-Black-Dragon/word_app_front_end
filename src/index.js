@@ -6,7 +6,7 @@ import reducers from "./redux/reducers/reducer.js";
 
 import App from "./App";
 import "./index.css";
-
+// redux store setup
 const store = createStore(reducers, {}, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
